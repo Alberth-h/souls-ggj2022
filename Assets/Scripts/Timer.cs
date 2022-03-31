@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
     [SerializeField] Text timerText;
     [SerializeField] Text winnerText;
 
+    float timeEnd = 6.0f;
+
     Score score;
     ScoreP2 scoreP2;
     
@@ -43,7 +45,18 @@ public class Timer : MonoBehaviour
                 winnerText.text = "Draw";
                 Destroy (GameObject.FindWithTag("soul"));
             }
-            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene("Menu");
+
+            if (timeEnd > 0)
+            {
+                timeEnd -= Time.deltaTime;
+            }
+            else
+            {
+                timeEnd = 0;
+                SceneManager.LoadScene("Menu");
+            }
+
 
         }
 
