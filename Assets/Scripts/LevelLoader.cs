@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / .9f);
             slider.value = progress;
 
-            Debug.Log(progress);
+            //Debug.Log(progress);
 
             yield return null;
         }

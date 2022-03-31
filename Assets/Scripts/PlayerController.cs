@@ -16,9 +16,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Score score;
+    Score combo;
 
     [SerializeField]
     ScoreP2 scoreP2;
+    public int comboP2;
 
     [SerializeField]
     Vector3 rayOrigin;
@@ -84,6 +86,13 @@ public class PlayerController : MonoBehaviour
         }
         if(transform.position.y < -10)
         {
+            
+            if(gameObject.tag == "player1"){
+                score.ResetCombo();
+            }
+            else{
+                scoreP2.ResetComboP2();
+            }
             transform.position = new Vector3(0f, 1.3f, 0f);
         }
     }
@@ -103,18 +112,22 @@ public class PlayerController : MonoBehaviour
         {
             if(gameObject.tag == "player1")
             {
+                
                 Soul soul = other.GetComponent<Soul>();
                 score.AddPoints(soul.GetPoints);
                 sfx.Play();
 
                 Destroy(other.gameObject);
+                score.IncreaseCombo();
             }else
             {
+                
                 Soul soul = other.GetComponent<Soul>();
                 scoreP2.AddPointsP2(soul.GetPoints);
                 sfx.Play();
 
                 Destroy(other.gameObject);
+                scoreP2.IncreaseComboP2();
             }
             
         }
